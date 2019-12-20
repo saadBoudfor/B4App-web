@@ -1,0 +1,13 @@
+<ng-container class="row" *ngIf="canLoad">
+  <div class="input-field">
+    <input id="ok"
+           type="text"
+           [ngClass]="{'valid': inputData.isValid === true, 'invalid': inputData.isValid === false}"
+           (keyup)="onKeyUp($event)">
+    <label for="ok">{{inputData.placeholder}} {{requiredMessage()}}"</label>
+  </div>
+
+  <ng-container *ngFor="let message of inputData.messages">
+    <p *ngIf="message.show" [ngClass]="'notification '+ message.type">{{message.content}}</p>
+  </ng-container>
+</ng-container>
