@@ -3,6 +3,7 @@ import {Currency} from '../models/Currency';
 import {IncomeRepository} from '../services/IncomeRepository';
 import {IncomeBuilder} from '../builders/IncomeBuilder';
 import {InputModel, InputType, MessageType} from '../../b4-lib/inputs/InputModel';
+import {$e} from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'income-screen',
@@ -12,9 +13,9 @@ import {InputModel, InputType, MessageType} from '../../b4-lib/inputs/InputModel
 export class IncomeScreenComponent implements OnInit {
   public inputData: InputModel = {
     isRequired: true,
-    label: 'Product name',
+    label: 'Provenance',
     // icon: 'date_range',
-    type: InputType.textarea,
+    type: InputType.text,
     messages: [
       {show: false, content: 'Product name not found in database', type: MessageType.error}
     ]
@@ -36,6 +37,10 @@ export class IncomeScreenComponent implements OnInit {
   }
 
   displayOnConsole($event: string) {
+    console.log($event);
+  }
+
+  clicked($event: string) {
     console.log($event);
   }
 }

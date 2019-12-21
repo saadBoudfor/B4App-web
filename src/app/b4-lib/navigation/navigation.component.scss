@@ -1,0 +1,42 @@
+main.container {
+  div.wrapper {
+    text-align: center;
+
+    i.icon {
+      font-size: 100px;
+    }
+  }
+
+  p.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  p.sub-title {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+:host {
+  display: block;
+  background-color: green;
+  color: white;
+  padding: 20px;
+}
+
+header {
+  i.navigation {
+    font-weight: bold;
+    font-size: 30px;
+
+    &.left {
+      float: left;
+    }
+
+    &.right {
+      float: right;
+    }
+  }
+
+}

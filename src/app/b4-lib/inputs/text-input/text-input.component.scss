@@ -1,0 +1,22 @@
+:host {
+  display: block;
+}
+
+p.notification {
+  font-size: 14px;
+  margin: 0;
+  font-style: italic;
+  &.info {
+    color: green;
+  }
+  &.warn {
+    color: orange;
+  }
+  &.error {
+    color: red;
+  }
+}
+
+div.input-field {
+  margin-bottom: 0;
+}

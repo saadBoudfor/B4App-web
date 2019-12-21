@@ -3,10 +3,10 @@ import {InputModel} from '../inputs/InputModel';
 
 @Component({
   selector: 'switch-elt',
-  templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.scss']
+  templateUrl: './switch-elt.component.html',
+  styleUrls: ['./switch-elt.component.scss']
 })
-export class SwitchComponent implements OnInit {
+export class SwitchEltComponent implements OnInit {
 
   @Output()
   public value = new EventEmitter<string>();
