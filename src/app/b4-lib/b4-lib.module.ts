@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { B4InputComponent } from './b4-input/b4-input.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
 import {HttpClientModule} from '@angular/common/http';
+import {TextInputComponent} from './inputs/text-input/text-input.component';
+import { SwitchComponent } from './switch/switch.component';
 
 
 @NgModule({
-  declarations: [B4InputComponent],
+  declarations: [TextInputComponent, SwitchComponent],
   imports: [
     CommonModule,
     HttpClientModule,
-    LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR})
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR})
   ],
-  exports: [B4InputComponent]
+  exports: [TextInputComponent, SwitchComponent]
 })
-export class B4LibModule { }
+export class B4LibModule {
+}

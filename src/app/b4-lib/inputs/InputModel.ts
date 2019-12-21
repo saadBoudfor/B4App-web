@@ -9,9 +9,11 @@
 export interface InputModel {
   isRequired?: boolean;
   initValue?: string;
-  placeholder?: string;
+  label?: string;
   isValid?: boolean;
-  messages: Message[];
+  type?: InputType;
+  messages?: Message[];
+  icon?: string;
 }
 
 
@@ -26,4 +28,8 @@ export interface Message {
 
 export enum MessageType {
   warn = 'warn', error = 'error', info = 'info'
+}
+
+export enum InputType {
+  date = 'date', text = 'text', number = 'number', textarea = 'textarea'
 }

@@ -1,10 +1,13 @@
 <ng-container class="row" *ngIf="canLoad">
   <div class="input-field">
-    <input id="ok"
-           type="text"
+    <i *ngIf="inputData.icon" class="material-icons prefix">{{inputData.icon}}</i>
+    <input *ngIf="inputData.type !== 'textarea'"
+           type="{{inputData.type ? inputData.type : 'text'}}"
            [ngClass]="{'valid': inputData.isValid === true, 'invalid': inputData.isValid === false}"
            (keyup)="onKeyUp($event)">
-    <label for="ok">{{inputData.placeholder}} {{requiredMessage()}}"</label>
+
+    <textarea *ngIf="inputData.type== 'textarea'" class="materialize-textarea" (keyup)="onKeyUp($event)"></textarea>
+    <label>{{inputData.label}} <i class="required">{{requiredMessage()}}</i></label>
   </div>
 
   <ng-container *ngFor="let message of inputData.messages">
