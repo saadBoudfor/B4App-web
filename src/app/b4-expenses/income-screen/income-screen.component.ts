@@ -10,7 +10,7 @@ import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
 })
 export class IncomeScreenComponent implements OnInit {
   public incomeBuilder = IncomeBuilder.builder;
-  public navigationModel: NavigationModel = {title: 'Source de revenue', subtitle: 'Primes, ventes, salaire ...', icon: 'swap_horiz'};
+  public navigationModel: NavigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz');
 
   constructor() {
   }

@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavigationModel} from './NavigationModel';
 import {ButtonType} from './ButtonType';
 import {NGXLogger} from 'ngx-logger';
-import {StringUtils} from '../utils/StringUtils';
 
 @Component({
   selector: 'nav-component',
@@ -23,15 +22,9 @@ export class NavigationComponent implements OnInit {
   constructor(public logger: NGXLogger) {
   }
 
-  private static hasContent(navigationModel: NavigationModel) {
-    return navigationModel
-      && StringUtils.hasContent(navigationModel.title)
-      && StringUtils.hasContent(navigationModel.subtitle)
-      && StringUtils.hasContent(navigationModel.icon);
-  }
 
   ngOnInit() {
-    if (!NavigationComponent.hasContent(this.navigationModel)) {
+    if (!this.navigationModel || !this.navigationModel.hasContent()) {
       this.logger.error('Navigation component was called with empty model');
     }
   }
