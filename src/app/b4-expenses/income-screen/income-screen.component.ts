@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IncomeBuilder} from '../builders/IncomeBuilder';
+import {ButtonType} from '../../b4-lib/navigation/ButtonType';
+import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
 
 @Component({
   selector: 'income-screen',
@@ -8,7 +10,7 @@ import {IncomeBuilder} from '../builders/IncomeBuilder';
 })
 export class IncomeScreenComponent implements OnInit {
   public incomeBuilder = IncomeBuilder.builder;
-  private VALIDATE = 'left-button';
+  public navigationModel: NavigationModel = {title: 'Source de revenue', subtitle: 'Primes, ventes, salaire ...', icon: 'swap_horiz'};
 
   constructor() {
   }
@@ -16,8 +18,8 @@ export class IncomeScreenComponent implements OnInit {
   ngOnInit() {
   }
 
-  clicked($event: string) {
-    if ($event === this.VALIDATE) {
+  clicked($event: ButtonType) {
+    if ($event === ButtonType.SUBMIT) {
       console.log(this.incomeBuilder.build());
     }
   }

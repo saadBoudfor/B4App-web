@@ -1,16 +1,16 @@
 <header>
-  <i class="material-icons navigation left" (click)="onClick('left-button')">done</i>
-  <i class="material-icons navigation right" (click)="onClick('right-button')">close</i>
+  <i class="material-icons navigation left" (click)="onClick(submitButton)">done</i>
+  <i class="material-icons navigation right" (click)="onClick(cancelButton)">close</i>
 </header>
 
 <main class="container">
   <div class="row">
     <div class="col-12 wrapper">
-      <i class="material-icons icon">swap_horiz</i>
+      <i class="material-icons icon">{{navigationModel?.icon}}</i>
     </div>
     <div class="col-12 wrapper">
-      <p class="title">Source de revenue</p>
-      <p class="sub-title">Primes, ventes, salaire ...</p>
+      <p class="title">{{navigationModel?.title}}</p>
+      <p class="sub-title">{{navigationModel?.subtitle}}</p>
     </div>
   </div>
 </main>
