@@ -1,8 +1,8 @@
 main.container {
   div.wrapper {
     text-align: center;
-
     i.icon {
+      color: white;
       font-size: 100px;
     }
   }
@@ -11,17 +11,18 @@ main.container {
     font-size: 24px;
     font-weight: bold;
     margin: 0;
+    color: white;
   }
   p.sub-title {
     font-size: 16px;
     margin: 0;
+    color: white;
   }
 }
 
 :host {
   display: block;
   background-color: green;
-  color: white;
   padding: 20px;
 }
 
@@ -29,7 +30,7 @@ header {
   i.navigation {
     font-weight: bold;
     font-size: 30px;
-
+    color: white;
     &.left {
       float: left;
     }
