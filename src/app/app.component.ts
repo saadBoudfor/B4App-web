@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +7,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  data: string;
 
-  display(data) {
-   this.data = data;
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {

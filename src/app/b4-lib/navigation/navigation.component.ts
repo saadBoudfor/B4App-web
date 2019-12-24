@@ -23,15 +23,15 @@ export class NavigationComponent implements OnInit {
   constructor(public logger: NGXLogger) {
   }
 
-  private static isEmpty(navigationModel: NavigationModel) {
+  private static hasContent(navigationModel: NavigationModel) {
     return navigationModel
-      && StringUtils.isEmpty(navigationModel.title)
-      && StringUtils.isEmpty(navigationModel.subtitle)
-      && StringUtils.isEmpty(navigationModel.icon);
+      && StringUtils.hasContent(navigationModel.title)
+      && StringUtils.hasContent(navigationModel.subtitle)
+      && StringUtils.hasContent(navigationModel.icon);
   }
 
   ngOnInit() {
-    if (NavigationComponent.isEmpty(this.navigationModel)) {
+    if (!NavigationComponent.hasContent(this.navigationModel)) {
       this.logger.error('Navigation component was called with empty model');
     }
   }

@@ -4,6 +4,7 @@ import { IncomeScreenComponent } from './income-screen/income-screen.component';
 import {B4LibModule} from '../b4-lib/b4-lib.module';
 import {IncomeRepository} from './services/IncomeRepository';
 import {MaterialModule} from './MaterialModule';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 
@@ -12,7 +13,8 @@ import {MaterialModule} from './MaterialModule';
   imports: [
     CommonModule,
     MaterialModule,
-    B4LibModule
+    B4LibModule,
+    TranslateModule
   ],
   exports: [IncomeScreenComponent],
   providers: [IncomeRepository]
