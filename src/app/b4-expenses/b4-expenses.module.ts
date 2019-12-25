@@ -6,6 +6,7 @@ import {IncomeService} from './services/IncomeService';
 import {MaterialModule} from './MaterialModule';
 import {TranslateModule} from '@ngx-translate/core';
 import {ReactiveFormsModule} from '@angular/forms';
+import {IncomeRepository} from './persistence/IncomeRepository';
 
 
 
@@ -19,6 +20,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule
   ],
   exports: [IncomeScreenComponent],
-  providers: [IncomeService]
+  providers: [IncomeService, IncomeRepository]
 })
 export class B4ExpensesModule { }

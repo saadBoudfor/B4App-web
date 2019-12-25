@@ -1,53 +1,40 @@
-import {Repository} from './Repository';
+import {CrudService} from './CrudService';
 import {Income} from '../models/Income';
-import * as _ from 'lodash';
 import {NGXLogger} from 'ngx-logger';
 import {Injectable} from '@angular/core';
+import {IncomeRepository} from '../persistence/IncomeRepository';
+import {IncomeUtils} from '../utils/IncomeUtils';
 
 @Injectable()
-export class IncomeService implements Repository<Income, number> {
-  private incomeList: Income[] = [];
+export class IncomeService implements CrudService<Income, number> {
 
-  constructor(private log: NGXLogger) {
+  constructor(private log: NGXLogger, private incomePersistence: IncomeRepository) {
   }
 
   delete(id: number): Income[] {
-    this.incomeList = _.reject(this.incomeList, income => income.id === id);
     this.log.info(' Income repository [IncomeService] delete income from list, id=' + id);
-    return this.incomeList;
+    return this.incomePersistence.delete(id);
   }
 
   getAll(): Income[] {
-    return this.incomeList;
+    return this.incomePersistence.getAll();
   }
 
   getByID(id: number): Income {
-    return _.find(this.incomeList, income => income.id === id);
+    return this.incomePersistence.getByID(id);
   }
 
   save(income: Income): Income {
-    const last = _.last(this.incomeList);
-    income.id = last ? last.id + 1 : 1;
-    this.incomeList.push(income);
-    this.log.info(' Income repository [IncomeService] add new income to list id=' + income.id);
-    this.log.info(income);
-    return income;
+    IncomeUtils.createId(income, this.getAll());
+    this.log.info(' Income repository [IncomeService] try to add new income with id=' + income.id);
+    return this.incomePersistence.save(income);
   }
 
   update(income: Income): Income {
-    const $index = this.incomeList.indexOf(income);
-    if ($index !== -1) {
-      this.incomeList[$index] = income;
-      this.log.info(' Income repository [IncomeService] update income' + income);
-      return income;
-    } else {
-      this.log.error(' Income repository [IncomeService] error: income not found ' + income);
-      return null;
-    }
+    return this.incomePersistence.update(income);
   }
 
   clearAll() {
-    this.incomeList = [];
+    this.incomePersistence.clearAll();
   }
-
 }

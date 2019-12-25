@@ -1,7 +1,7 @@
 /**
  *  Crud operation
  */
-export interface Repository<T, H> {
+export interface CrudService<T, H> {
   getAll(): T[];
 
   getByID(id: H): T;

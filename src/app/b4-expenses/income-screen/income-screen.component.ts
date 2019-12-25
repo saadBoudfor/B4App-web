@@ -16,7 +16,7 @@ export class IncomeScreenComponent implements OnInit {
   private incomeForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private incomeRepository: IncomeService) {
+              private incomeService: IncomeService) {
   }
 
   ngOnInit() {
@@ -42,11 +42,10 @@ export class IncomeScreenComponent implements OnInit {
         .isProgrammed(this.incomeForm.value.isProgrammed)
         .endDate(this.incomeForm.value.endDate)
         .build();
-      const newIncome = this.incomeRepository.save(income);
+      const newIncome = this.incomeService.save(income);
       if (newIncome) {
         this.incomeForm.reset();
       }
-      console.log(this.incomeRepository.getAll());
     }
   }
 }
