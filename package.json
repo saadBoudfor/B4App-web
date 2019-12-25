@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "embeded-test": "ng test  --browsers ChromeHeadless",
+    "embeded-test": "ng test  --browsers ChromeHeadless  --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -50,8 +50,10 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
+    "sonar-scanner": "^3.1.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-sonarts": "^1.9.0",
     "typescript": "~3.5.3"
   }
 }

@@ -1,4 +1,26 @@
-.col-12 > * {
+@import "src/theme";
+
+.row > * {
   width: 100%;
+}
+
+form {
+  padding: 20px;
+
+  div.switch {
+    margin-top: 15px;
+
+    mat-slide-toggle.switch.programmed {
+      float: right;
+    }
+
+    span.label {
+      color: $primary;
+    }
+  }
+
+  button {
+    margin-top: 15px;
+  }
 }
 

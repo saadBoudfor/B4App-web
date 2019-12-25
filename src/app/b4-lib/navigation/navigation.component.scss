@@ -1,43 +1,51 @@
+@import "src/theme";
+
 main.container {
+  display: flex;
+  flex-flow: column;
+
   div.wrapper {
     text-align: center;
-    i.icon {
+    margin: 0 2%;
+
+    em.icon {
       color: white;
       font-size: 100px;
     }
-  }
 
-  p.title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    color: white;
-  }
-  p.sub-title {
-    font-size: 16px;
-    margin: 0;
-    color: white;
+    em.navigation {
+      font-weight: bold;
+      font-size: 30px;
+      color: white;
+
+      &.left {
+        float: left;
+      }
+
+      &.right {
+        float: right;
+      }
+    }
+
+    p {
+      color: white;
+      margin: 0 0 5px;
+
+      &.title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      &.sub-title {
+        font-size: 16px;
+      }
+    }
   }
 }
 
 :host {
   display: block;
-  background-color: green;
-  padding: 20px;
-}
-
-header {
-  i.navigation {
-    font-weight: bold;
-    font-size: 30px;
-    color: white;
-    &.left {
-      float: left;
-    }
-
-    &.right {
-      float: right;
-    }
-  }
-
+  background-color: $primary;
+  padding: 20px 20px 35px;
+  box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset;
 }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {IncomeBuilder} from '../builders/IncomeBuilder';
-import {ButtonType} from '../../b4-lib/navigation/ButtonType';
 import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Currency} from '../models/Currency';
@@ -31,8 +30,8 @@ export class IncomeScreenComponent implements OnInit {
     });
   }
 
-  submitIncomeForm($event: ButtonType) {
-    if ($event === ButtonType.SUBMIT) {
+  submitIncomeForm() {
+    if (this.incomeForm.valid) {
       const income = IncomeBuilder
         .builder
         .origin(this.incomeForm.value.origin)

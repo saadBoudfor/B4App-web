@@ -1,16 +1,13 @@
-<header>
-  <i class="material-icons navigation left" (click)="onClick(submitButton)">done</i>
-  <i class="material-icons navigation right" (click)="onClick(cancelButton)">close</i>
-</header>
-
 <main class="container">
-  <div class="row">
-    <div class="col-12 wrapper">
-      <i class="material-icons icon">{{navigationModel?.icon}}</i>
-    </div>
-    <div class="col-12 wrapper">
-      <p class="title">{{navigationModel?.title}}</p>
-      <p class="sub-title">{{navigationModel?.subtitle}}</p>
-    </div>
+  <div class="wrapper">
+    <!--  <em class="material-icons navigation left" (click)="onClick(submitButton)">done</em>-->
+    <em class="material-icons navigation right" (click)="onClick(cancelButton)">close</em>
+  </div>
+  <div class="wrapper">
+    <em class="material-icons icon">{{navigationModel?.icon}}</em>
+  </div>
+  <div class="wrapper">
+    <p class="title">{{navigationModel?.title}}</p>
+    <p class="sub-title">{{navigationModel?.subtitle}}</p>
   </div>
 </main>
