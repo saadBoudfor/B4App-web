@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {NavigationComponent} from './navigation.component';
 import {By} from '@angular/platform-browser';
 import {NGXLogger} from 'ngx-logger';
+import {NavigationModel} from './NavigationModel';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -30,7 +31,7 @@ describe('NavigationComponent', () => {
   describe(' when testing template: ', () => {
     it(' should render given navigation model elements in template:', () => {
       // given:
-      const navigationModel = {title: 'title', subtitle: 'subtitle', icon: 'icon'};
+      const navigationModel = new NavigationModel('title', 'subtitle', 'icon');
       component.navigationModel = navigationModel;
 
       // when:

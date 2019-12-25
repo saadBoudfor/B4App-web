@@ -1,11 +1,14 @@
+/**
+ *  Crud operation
+ */
 export interface Repository<T, H> {
   getAll(): T[];
 
   getByID(id: H): T;
 
-  saveData(data: T): T;
+  save(data: T): T;
 
-  deleteData(data: H): T[];
+  delete(data: H): T[];
 
-  updateData(data: T): T;
+  update(data: T): T;
 }

@@ -1,6 +1,14 @@
 {
-  "demo": {
-    "title": "Bienvenue dans B4App",
-    "description": "Votre assistant personnel virtuel"
+  "income": {
+    "form": {
+      "add": {
+        "origin": "Provenance",
+        "description": "Description",
+        "amount": "Montant",
+        "transferDate": "Date du virement",
+        "isProgrammed": "Virement mensuel ?",
+        "endDate": "Date de fin"
+      }
+    }
   }
 }

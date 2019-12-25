@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IncomeScreenComponent } from './income-screen/income-screen.component';
 import {B4LibModule} from '../b4-lib/b4-lib.module';
-import {IncomeRepository} from './services/IncomeRepository';
+import {IncomeService} from './services/IncomeService';
 import {MaterialModule} from './MaterialModule';
 import {TranslateModule} from '@ngx-translate/core';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -14,9 +15,10 @@ import {TranslateModule} from '@ngx-translate/core';
     CommonModule,
     MaterialModule,
     B4LibModule,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule
   ],
   exports: [IncomeScreenComponent],
-  providers: [IncomeRepository]
+  providers: [IncomeService]
 })
 export class B4ExpensesModule { }

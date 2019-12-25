@@ -1,21 +1,37 @@
-<nav-component [navigationModel]="navigationModel" (action)="clicked($event)"></nav-component>
+<nav-component [navigationModel]="navigationModel" (action)="submitIncomeForm($event)"></nav-component>
 
 <main class="container">
   <div class="row">
-    <div class="col-12">
+    <form class="col-12" [formGroup]="incomeForm">
       <mat-form-field>
-        <input matInput placeholder="Input">
+        <input matInput placeholder="{{'income.form.add.origin' | translate}}" formControlName="origin">
       </mat-form-field>
 
       <mat-form-field>
-        <textarea matInput placeholder="Textarea"></textarea>
+        <textarea matInput placeholder="{{'income.form.add.description' | translate}}"
+                  formControlName="description"></textarea>
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Select">
-          <mat-option value="option">Option</mat-option>
-        </mat-select>
+        <input matInput placeholder="{{'income.form.add.transferDate' | translate}}" [matDatepicker]="transferDate"
+               formControlName="transferDate">
+        <mat-datepicker-toggle matSuffix [for]="transferDate"></mat-datepicker-toggle>
+        <mat-datepicker #transferDate></mat-datepicker>
       </mat-form-field>
-    </div>
+
+      <mat-form-field>
+        <input matInput type="number" placeholder="{{'income.form.add.amount' | translate}}" formControlName="amount">
+      </mat-form-field>
+
+      <mat-slide-toggle formControlName="isProgrammed">{{'income.form.add.isProgrammed' | translate}}</mat-slide-toggle>
+
+      <mat-form-field>
+        <input matInput placeholder="{{'income.form.add.endDate' | translate}}" [matDatepicker]="endDate"
+               formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+        <mat-datepicker #endDate></mat-datepicker>
+      </mat-form-field>
+
+    </form>
   </div>
 </main>

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {IncomeBuilder} from '../builders/IncomeBuilder';
 import {ButtonType} from '../../b4-lib/navigation/ButtonType';
 import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Currency} from '../models/Currency';
+import {IncomeService} from '../services/IncomeService';
 
 @Component({
   selector: 'income-screen',
@@ -9,18 +12,41 @@ import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
   styleUrls: ['./income-screen.component.scss']
 })
 export class IncomeScreenComponent implements OnInit {
-  public incomeBuilder = IncomeBuilder.builder;
-  public navigationModel: NavigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz');
+  public navigationModel: NavigationModel;
+  private incomeForm: FormGroup;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder,
+              private incomeRepository: IncomeService) {
   }
 
   ngOnInit() {
+    this.navigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz');
+    this.incomeForm = this.formBuilder.group({
+      origin: ['', Validators.required],
+      description: [''],
+      transferDate: ['', Validators.required],
+      amount: ['', Validators.required],
+      isProgrammed: [''],
+      endDate: ['']
+    });
   }
 
-  clicked($event: ButtonType) {
+  submitIncomeForm($event: ButtonType) {
     if ($event === ButtonType.SUBMIT) {
-      console.log(this.incomeBuilder.build());
+      const income = IncomeBuilder
+        .builder
+        .origin(this.incomeForm.value.origin)
+        .description(this.incomeForm.value.description)
+        .transferDate(this.incomeForm.value.transferDate)
+        .amount({value: this.incomeForm.value.amount, currency: Currency.EUR})
+        .isProgrammed(this.incomeForm.value.isProgrammed)
+        .endDate(this.incomeForm.value.endDate)
+        .build();
+      const newIncome = this.incomeRepository.save(income);
+      if (newIncome) {
+        this.incomeForm.reset();
+      }
+      console.log(this.incomeRepository.getAll());
     }
   }
 }
