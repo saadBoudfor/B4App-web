@@ -4,6 +4,7 @@ import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Currency} from '../models/Currency';
 import {IncomeService} from '../services/IncomeService';
+import {Income} from '../models/Income';
 
 @Component({
   selector: 'income-screen',
@@ -12,7 +13,8 @@ import {IncomeService} from '../services/IncomeService';
 })
 export class IncomeScreenComponent implements OnInit {
   public navigationModel: NavigationModel;
-  private incomeForm: FormGroup;
+  public incomeForm: FormGroup;
+
 
   constructor(private formBuilder: FormBuilder,
               private incomeService: IncomeService) {
@@ -30,7 +32,7 @@ export class IncomeScreenComponent implements OnInit {
     });
   }
 
-  submitIncomeForm() {
+  submitIncomeForm(): Income {
     if (this.incomeForm.valid) {
       const income = IncomeBuilder
         .builder
@@ -45,6 +47,7 @@ export class IncomeScreenComponent implements OnInit {
       if (newIncome) {
         this.incomeForm.reset();
       }
+      return income;
     }
   }
 }
