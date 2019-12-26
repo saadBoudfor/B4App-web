@@ -17,8 +17,7 @@ export class IncomeRepository implements CrudService<Income, number> {
   }
 
   getAll(): Income[] {
-    const incomes = IncomeUtils.stringToIncomes(localStorage.getItem(LocalStorageKeyStore.INCOMES));
-    return incomes ? incomes : [];
+    return IncomeUtils.stringToIncomes(localStorage.getItem(LocalStorageKeyStore.INCOMES));
   }
 
   getByID(id: number): Income {

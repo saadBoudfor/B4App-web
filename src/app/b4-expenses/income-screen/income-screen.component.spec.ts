@@ -10,6 +10,8 @@ import {BehaviorSubject} from 'rxjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
 import {Income} from '../models/Income';
+import {IncomeBuilder} from '../builders/IncomeBuilder';
+import {Currency} from '../models/Currency';
 
 @Pipe({name: 'translate'})
 class MockPipe implements PipeTransform {
@@ -62,6 +64,7 @@ describe('IncomeScreenComponent', () => {
 
   it('empty income form should be invalid', () => {
     expect(component.incomeForm.valid).toBeFalsy();
+    expect(component.submitIncomeForm()).toBeUndefined();
   });
 
   it('origin input should be required', () => {
@@ -81,14 +84,19 @@ describe('IncomeScreenComponent', () => {
   });
 
   it('submitting a form adding new income', () => {
+    const expectedIncome: Income = IncomeBuilder
+      .builder
+      .origin('transfer test')
+      .transferDate(new Date())
+      .amount({value: 111, currency: Currency.EUR})
+      .build();
     const originInput = component.incomeForm.controls.origin;
     const amountInput = component.incomeForm.controls.amount;
     const transferDateInput = component.incomeForm.controls.transferDate;
-    originInput.setValue('transfer test');
-    amountInput.setValue(111);
-    transferDateInput.setValue(new Date());
-    const income = component.submitIncomeForm();
-    expect(income.amount.value).toEqual(111);
-    expect(income.origin).toEqual('transfer test');
+    originInput.setValue(expectedIncome.origin);
+    amountInput.setValue(expectedIncome.amount.value);
+    transferDateInput.setValue(expectedIncome.transferDate);
+    expect(component.incomeForm.valid).toBeTruthy();
+    expect(component.submitIncomeForm()).toEqual(expectedIncome);
   });
 });

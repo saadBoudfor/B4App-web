@@ -70,6 +70,11 @@ describe('NavigationComponent', () => {
       });
     }));
 
+    it('should log error if navigation model was not found', async(() => {
+        fixture.detectChanges();
+        expect(ngxMock.error).toHaveBeenCalled();
+    }));
+
   });
 
 });

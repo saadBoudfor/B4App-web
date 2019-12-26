@@ -94,4 +94,12 @@ describe('Income repository: testing curd operation on ', () => {
     incomeService.update(saved);
     expect(incomeService.getAll()).toEqual([{id: 1, amount: {value: 150, currency: Currency.EUR}}]);
   });
+
+  it('Should get right  object when get by id function  is called', () => {
+    incomeService = new IncomeService(logger, new IncomeRepositoryMock());
+    incomeService.clearAll();
+    const savedIncome = {id: 1, amount: {value: 222, currency: Currency.EUR}};
+    incomeService.save(savedIncome);
+    expect(incomeService.getByID(savedIncome.id)).toEqual(savedIncome);
+  });
 });
