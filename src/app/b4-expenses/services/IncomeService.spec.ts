@@ -8,7 +8,8 @@ let incomeService: IncomeService;
 let logger;
 
 class IncomeRepositoryMock implements CrudService<Income, number> {
-  private  incomeList: Income[] = [];
+  private incomeList: Income[] = [];
+
   getAll() {
     return this.incomeList;
   }
@@ -34,7 +35,7 @@ class IncomeRepositoryMock implements CrudService<Income, number> {
 
   delete(id: number): Income[] {
     this.incomeList = _.reject(this.incomeList, income => income.id === id);
-    return  this.incomeList;
+    return this.incomeList;
   }
 
 }
