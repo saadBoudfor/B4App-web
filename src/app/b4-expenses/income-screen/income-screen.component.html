@@ -13,6 +13,13 @@
                   formControlName="description"></textarea>
     </mat-form-field>
 
+    <section class="row">
+      <div class="switch">
+        <span class="label">{{'income.form.add.isCardPayment' | translate}}</span>
+        <mat-slide-toggle class="switch button" formControlName="isCardPayment"></mat-slide-toggle>
+      </div>
+    </section>
+
     <mat-form-field>
       <input matInput placeholder="{{'income.form.add.transferDate' | translate}}"
              [matDatepicker]="transferDatePicker"
@@ -29,7 +36,7 @@
   <section class="row">
     <div class="switch">
       <span class="label">{{'income.form.add.isProgrammed' | translate}}</span>
-      <mat-slide-toggle class="programmed switch" formControlName="isProgrammed"></mat-slide-toggle>
+      <mat-slide-toggle class="switch button" formControlName="isProgrammed"></mat-slide-toggle>
     </div>
     <mat-form-field *ngIf="incomeForm.value['isProgrammed']">
       <input matInput placeholder="{{'income.form.add.endDate' | translate}}" [matDatepicker]="endDatePicker"

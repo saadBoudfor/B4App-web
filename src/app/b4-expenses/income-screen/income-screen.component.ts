@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Currency} from '../models/Currency';
 import {IncomeService} from '../services/IncomeService';
 import {Income} from '../models/Income';
+import {IncomeUtils} from '../utils/IncomeUtils';
 
 @Component({
   selector: 'income-screen',
@@ -24,6 +25,7 @@ export class IncomeScreenComponent implements OnInit {
     this.navigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz');
     this.incomeForm = this.formBuilder.group({
       origin: ['', Validators.required],
+      isCardPayment: [''],
       description: [''],
       transferDate: ['', Validators.required],
       amount: ['', Validators.required],
@@ -42,6 +44,7 @@ export class IncomeScreenComponent implements OnInit {
         .amount({value: this.incomeForm.value.amount, currency: Currency.EUR})
         .isProgrammed(this.incomeForm.value.isProgrammed)
         .endDate(this.incomeForm.value.endDate)
+        .payment(this.incomeForm.value.isCardPayment ? IncomeUtils.setCardPayment() : IncomeUtils.setCashPayment())
         .build();
       const newIncome = this.incomeService.save(income);
       if (newIncome) {

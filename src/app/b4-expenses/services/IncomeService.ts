@@ -4,6 +4,7 @@ import {NGXLogger} from 'ngx-logger';
 import {Injectable} from '@angular/core';
 import {IncomeRepository} from '../persistence/IncomeRepository';
 import {IncomeUtils} from '../utils/IncomeUtils';
+import {PaymentType} from '../models/PaymentType';
 
 @Injectable()
 export class IncomeService implements CrudService<Income, number> {
@@ -25,6 +26,9 @@ export class IncomeService implements CrudService<Income, number> {
   }
 
   save(income: Income): Income {
+    if (!income.payment) {
+      income.payment = {type: PaymentType.CASH};
+    }
     IncomeUtils.createId(income, this.getAll());
     this.log.info(' Income repository [IncomeService] try to add new income with id=' + income.id);
     return this.incomePersistence.save(income);

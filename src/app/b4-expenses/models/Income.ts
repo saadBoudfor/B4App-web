@@ -1,4 +1,5 @@
 import {Amount} from './Amount';
+import {Payment} from './Payment';
 
 export class Income {
   id?: number;
@@ -8,5 +9,6 @@ export class Income {
   amount?: Amount;
   isProgrammed?: boolean;
   endDate?: Date;
+  payment?: Payment;
 }
 

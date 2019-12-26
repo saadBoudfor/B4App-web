@@ -8,7 +8,8 @@
         "transferDate": "Date du virement",
         "isProgrammed": "Virement mensuel ?",
         "endDate": "Date de fin",
-        "submit": "valider"
+        "submit": "valider",
+        "isCardPayment": "Payment par carte ?"
       }
     }
   }

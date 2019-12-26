@@ -10,12 +10,13 @@ form {
   div.switch {
     margin-top: 15px;
 
-    mat-slide-toggle.switch.programmed {
+    mat-slide-toggle.switch.button {
       float: right;
     }
 
     span.label {
       color: $primary;
+      font-weight: 500;
     }
   }
 

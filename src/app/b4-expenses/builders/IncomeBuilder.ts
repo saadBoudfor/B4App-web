@@ -1,5 +1,6 @@
 import {Income} from '../models/Income';
 import {Amount} from '../models/Amount';
+import {Payment} from '../models/Payment';
 
 export class IncomeBuilder {
   public static builder = new IncomeBuilder();
@@ -38,6 +39,11 @@ export class IncomeBuilder {
 
   isProgrammed(isProgrammed: boolean): IncomeBuilder {
     this.income.isProgrammed = isProgrammed;
+    return this;
+  }
+
+  payment(payment: Payment): IncomeBuilder {
+    this.income.payment = payment;
     return this;
   }
 
