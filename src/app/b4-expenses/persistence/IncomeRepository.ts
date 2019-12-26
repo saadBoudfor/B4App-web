@@ -39,6 +39,6 @@ export class IncomeRepository implements CrudService<Income, number> {
   }
 
   clearAll() {
-    localStorage.setItem(LocalStorageKeyStore.INCOMES, '');
+    localStorage.setItem(LocalStorageKeyStore.INCOMES, '[]');
   }
 }

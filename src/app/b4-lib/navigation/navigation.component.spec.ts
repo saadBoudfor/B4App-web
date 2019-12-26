@@ -31,7 +31,7 @@ describe('NavigationComponent', () => {
   describe(' when testing template: ', () => {
     it(' should render given navigation model elements in template:', () => {
       // given:
-      const navigationModel = new NavigationModel('title', 'subtitle', 'icon');
+      const navigationModel = new NavigationModel('title', 'subtitle', 'assignment_return');
       component.navigationModel = navigationModel;
 
       // when:

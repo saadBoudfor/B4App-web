@@ -11,4 +11,6 @@ export interface CrudService<T, H> {
   delete(data: H): T[];
 
   update(data: T): T;
+
+  clearAll();
 }
