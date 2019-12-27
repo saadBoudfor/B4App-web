@@ -1,7 +1,7 @@
 <main class="container">
   <div class="wrapper">
-    <em class="material-icons navigation left" (click)="onClick(submitButton)">done</em>
-    <em class="material-icons navigation right" (click)="onClick(cancelButton)">close</em>
+    <em *ngIf="leftButton" class="material-icons navigation left" (click)="onClick(leftButton.name)">{{leftButton.icon}}</em>
+    <em *ngIf="rightButton" class="material-icons navigation right" (click)="onClick(rightButton.name)">{{rightButton.icon}}</em>
   </div>
   <div class="wrapper">
     <em class="material-icons icon">{{navigationModel?.icon}}</em>

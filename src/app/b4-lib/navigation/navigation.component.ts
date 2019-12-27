@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavigationModel} from './NavigationModel';
-import {ButtonType} from './ButtonType';
+import {ButtonPosition} from './ButtonPosition';
 import {NGXLogger} from 'ngx-logger';
+import {NavigationButton} from './NavigationButton';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'nav-component',
@@ -10,11 +12,11 @@ import {NGXLogger} from 'ngx-logger';
 })
 export class NavigationComponent implements OnInit {
 
-  public submitButton: string = ButtonType[ButtonType.SUBMIT];
-  public cancelButton: string = ButtonType[ButtonType.CANCEL];
+  public leftButton: NavigationButton;
+  public rightButton: NavigationButton;
 
   @Output()
-  public action = new EventEmitter<ButtonType>();
+  public action = new EventEmitter<ButtonPosition>();
 
   @Input()
   public navigationModel: NavigationModel;
@@ -26,11 +28,31 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     if (!this.navigationModel || !this.navigationModel.hasContent()) {
       this.logger.error('Navigation component was called with empty model');
+    } else {
+      this.leftButton = this.getLeftButton();
+      this.rightButton = this.getRightButton();
     }
+
+  }
+
+  getLeftButton(): NavigationButton {
+    const list = this.navigationModel.buttonList;
+    if (list && list.length !== 0) {
+      return _.findLast(list, button => button.position === ButtonPosition.LEFT);
+    }
+    return null;
+  }
+
+  getRightButton(): NavigationButton {
+    const list = this.navigationModel.buttonList;
+    if (list && list.length !== 0) {
+      return _.findLast(list, button => button.position === ButtonPosition.RIGHT);
+    }
+    return null;
   }
 
   onClick(button: string) {
-    this.action.emit(ButtonType[button]);
+    this.action.emit(ButtonPosition[button]);
   }
 
 }

@@ -4,16 +4,21 @@ import {NavigationComponent} from './navigation.component';
 import {By} from '@angular/platform-browser';
 import {NGXLogger} from 'ngx-logger';
 import {NavigationModel} from './NavigationModel';
+import {ButtonPosition} from './ButtonPosition';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
   let ngxMock;
+  const navigationModel = new NavigationModel('title', 'subtitle', 'assignment_return', [
+    {icon: 'close', name: 'quit', position: ButtonPosition.RIGHT},
+    {icon: 'add', name: 'save', position: ButtonPosition.LEFT}
+  ]);
   beforeEach(async(() => {
     ngxMock = jasmine.createSpyObj(['error']);
     TestBed.configureTestingModule({
       declarations: [NavigationComponent],
-       providers: [{provide: NGXLogger, useValue: ngxMock}]
+      providers: [{provide: NGXLogger, useValue: ngxMock}]
     })
       .compileComponents();
   }));
@@ -21,7 +26,6 @@ describe('NavigationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavigationComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -30,11 +34,9 @@ describe('NavigationComponent', () => {
 
   describe(' when testing template: ', () => {
     it(' should render given navigation model elements in template:', () => {
-      // given:
-      const navigationModel = new NavigationModel('title', 'subtitle', 'assignment_return');
-      component.navigationModel = navigationModel;
 
       // when:
+      component.navigationModel = navigationModel;
       fixture.detectChanges();
 
       // then:
@@ -48,31 +50,68 @@ describe('NavigationComponent', () => {
   });
 
   describe('when testing button interaction', () => {
+    it('should get right and left button', async(() => {
+      spyOn(component, 'onClick');
+      component.navigationModel = navigationModel;
+      fixture.detectChanges();
+      expect(component.getRightButton()).not.toBeNull();
+      expect(component.getLeftButton()).not.toBeNull();
+    }));
     it('should emit ButtonType.SUBMIT if left button clicked', async(() => {
       spyOn(component, 'onClick');
 
+      component.navigationModel = navigationModel;
+      fixture.detectChanges();
+
       const button = fixture.debugElement.nativeElement.querySelector('.left');
+      expect(button).not.toBeNull();
       button.click();
 
       fixture.whenStable().then(() => {
-        expect(component.onClick).toHaveBeenCalledWith(component.submitButton);
+        expect(component.onClick).toHaveBeenCalledWith(component.leftButton.name);
       });
     }));
 
     it('should emit ButtonType.CANCEL if right button clicked', async(() => {
       spyOn(component, 'onClick');
+      component.navigationModel = navigationModel;
+      fixture.detectChanges();
 
       const button = fixture.debugElement.nativeElement.querySelector('.right');
+      expect(button).not.toBeNull();
       button.click();
-
       fixture.whenStable().then(() => {
-        expect(component.onClick).toHaveBeenCalledWith(component.cancelButton);
+        expect(component.onClick).toHaveBeenCalledWith(component.rightButton.name);
       });
     }));
 
+    it('should not render right button if associated navigation button was not provided', async(() => {
+      spyOn(component, 'onClick');
+      component.navigationModel = new NavigationModel('title', 'subtitle', 'assignment_return', [
+        {icon: 'add', name: 'save', position: ButtonPosition.LEFT}
+      ]);
+      fixture.detectChanges();
+      expect(component.getRightButton()).not.toBeNull();
+      expect(component.getLeftButton()).not.toBeNull();
+      const button = fixture.debugElement.nativeElement.querySelector('.right');
+      expect(button).toBeNull();
+    }));
+
+    it('should not render left button if associated navigation button was not provided', async(() => {
+      spyOn(component, 'onClick');
+      component.navigationModel = new NavigationModel('title', 'subtitle', 'assignment_return', [
+        {icon: 'add', name: 'save', position: ButtonPosition.RIGHT}
+      ]);
+      fixture.detectChanges();
+      const button = fixture.debugElement.nativeElement.querySelector('.left');
+      expect(button).toBeNull();
+    }));
+
     it('should log error if navigation model was not found', async(() => {
-        fixture.detectChanges();
-        expect(ngxMock.error).toHaveBeenCalled();
+      component.navigationModel = null;
+      fixture.detectChanges();
+
+      expect(ngxMock.error).toHaveBeenCalled();
     }));
 
   });

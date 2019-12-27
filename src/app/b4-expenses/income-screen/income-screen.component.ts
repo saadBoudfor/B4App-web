@@ -6,6 +6,7 @@ import {Currency} from '../models/Currency';
 import {IncomeService} from '../services/IncomeService';
 import {Income} from '../models/Income';
 import {IncomeUtils} from '../utils/IncomeUtils';
+import {ButtonPosition} from '../../b4-lib/navigation/ButtonPosition';
 
 @Component({
   selector: 'income-screen',
@@ -22,7 +23,11 @@ export class IncomeScreenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz');
+    this.navigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz', [{
+      icon: 'close',
+      name: 'cancel',
+      position: ButtonPosition.RIGHT
+    }]);
     this.incomeForm = this.formBuilder.group({
       origin: ['', Validators.required],
       isCardPayment: [''],
