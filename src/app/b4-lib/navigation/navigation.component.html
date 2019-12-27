@@ -1,12 +1,13 @@
 <main class="container">
   <div class="wrapper">
     <em *ngIf="leftButton" class="material-icons navigation left" (click)="onClick(leftButton.name)">{{leftButton.icon}}</em>
+    <em *ngIf="!navigationModel.hasContent()" class="title navigation">{{navigationModel?.title | translate}}</em>
     <em *ngIf="rightButton" class="material-icons navigation right" (click)="onClick(rightButton.name)">{{rightButton.icon}}</em>
   </div>
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="navigationModel.hasContent()">
     <em class="material-icons icon">{{navigationModel?.icon}}</em>
   </div>
-  <div class="wrapper">
+  <div class="wrapper" *ngIf="navigationModel.hasContent()">
     <p class="title">{{navigationModel?.title | translate}}</p>
     <p class="sub-title">{{navigationModel?.subtitle | translate}}</p>
   </div>

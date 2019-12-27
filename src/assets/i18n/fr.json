@@ -24,7 +24,8 @@
       "paymentType": "Type de payement",
       "title": "Source de revenue",
       "subtitle": "Détails du virement"
-    }
+    },
+    "list": {"title":  "Liste des virements"}
   },
   "global": {
     "true": "oui",

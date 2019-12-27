@@ -14,8 +14,6 @@ export class NavigationModel {
   }
 
   hasContent(): boolean {
-    return StringUtils.hasContent(this.title)
-      && StringUtils.hasContent(this.subtitle)
-      && StringUtils.hasContent(this.icon);
+    return StringUtils.hasContent(this.icon);
   }
 }

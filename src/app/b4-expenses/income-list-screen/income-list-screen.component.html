@@ -1,0 +1,15 @@
+<nav-component [navigationModel]="navigationModel"></nav-component>
+<main class="income list">
+  <mat-card *ngFor="let income of incomeList; let $index = index" class="card" [ngClass]="'background-' + $index">
+    <div class="income id">
+      <em class="title">{{income.origin}}</em>
+      <em class="subtitle">{{formatDate(income.transferDate)}}</em>
+    </div>
+    <div class="income payment">
+      <em class="amount">{{income.amount.value}} euro</em>
+      <em>
+        <img src=" {{'assets/img/' +(income?.payment.type === 'card' ? 'credit-card': 'money') + '.png'}}" alt="">
+      </em>
+    </div>
+  </mat-card>
+</main>

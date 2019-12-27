@@ -27,7 +27,7 @@ export class NavigationComponent implements OnInit {
 
 
   ngOnInit() {
-    if (!this.navigationModel || !this.navigationModel.hasContent()) {
+    if (!this.navigationModel) {
       this.logger.error(ErrorCode.NAVIGATION_MODEL_EMPTY);
     } else {
       this.leftButton = this.getLeftButton();

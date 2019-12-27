@@ -1,0 +1,65 @@
+@import "src/styles/theme";
+
+:host {
+  display: block;
+}
+
+main.income.list {
+  padding: 20px 10px;
+
+  mat-card.card {
+    margin-bottom: 15px;
+    display: flex;
+    flex-flow: row;
+
+    div.income {
+      flex: 1;
+      display: flex;
+      flex-flow: column;
+
+      &.payment {
+        text-align: end;
+
+        img {
+          width: 32px;
+        }
+      }
+
+      em {
+        font-style: normal;
+
+        &.subtitle, &.amount {
+          color: #7f7f7f;
+        }
+
+        &.title {
+          color: $primary;
+        }
+      }
+    }
+
+    &.background-2 {
+      background: url(src/assets/img/background_card.jpg);
+      background-size: cover;
+
+      div.income {
+        em {
+          &.title {
+            color: white;
+          }
+        }
+      }
+    }
+
+    &.background-0 {
+      background: url(src/assets/img/cash.jpg);
+
+      div.income {
+        em {
+          color: white;
+        }
+      }
+    }
+  }
+}
+
