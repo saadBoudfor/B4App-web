@@ -14,6 +14,5 @@ describe('Test empty function', () => {
   });
   it('Should return false for non empty string object', () => {
     expect(StringUtils.hasContent('not_empty')).toBeTruthy();
-
   });
 });

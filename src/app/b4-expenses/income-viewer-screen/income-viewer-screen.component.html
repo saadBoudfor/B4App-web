@@ -1,0 +1,40 @@
+<nav-component [navigationModel]="navigationModel"></nav-component>
+
+<main class="income details">
+  <div class="income field">
+    <div class="key">{{'income.details.origin'|translate}}</div>
+    <div class="value">{{income?.origin}}</div>
+  </div>
+  <div class="income field">
+    <div class="key">{{'income.details.amount'|translate}}</div>
+    <div class="value">
+      {{income?.amount.value}}
+      <span class="currency">{{'global.' + income?.amount.currency | translate}}</span>
+    </div>
+  </div>
+  <div class="income field">
+    <div class="key">{{'income.details.description'|translate}}</div>
+    <div class="value">{{income?.description}}</div>
+  </div>
+  <div class="income field">
+    <div class="key">{{'income.details.paymentType'|translate}}</div>
+    <div class="value">
+      <img src=" {{'assets/img/' +(income?.payment.type === 'card' ? 'credit-card': 'money') + '.png'}}" alt="">
+    </div>
+  </div>
+
+  <div class="income field">
+    <div class="key">{{'income.details.transferDate'|translate}}</div>
+    <div class="value">{{formatDate(income?.transferDate)}}</div>
+  </div>
+
+  <div class="income field">
+    <div class="key">{{'income.details.isProgrammed'|translate}}</div>
+    <div class="value">{{'global.' + income?.isProgrammed | translate}}</div>
+  </div>
+
+  <div class="income field">
+    <div class="key">{{'income.details.endDate'|translate}}</div>
+    <div class="value">{{formatDate(income?.endDate)}}</div>
+  </div>
+</main>

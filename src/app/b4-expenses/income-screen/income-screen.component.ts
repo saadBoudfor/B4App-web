@@ -23,7 +23,7 @@ export class IncomeScreenComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.navigationModel = new NavigationModel('Source de revenue', 'Primes, ventes, salaire, ...', 'swap_horiz', [{
+    this.navigationModel = new NavigationModel('income.form.add.title', 'income.form.add.subtitle', 'swap_horiz', [{
       icon: 'close',
       name: 'cancel',
       position: ButtonPosition.RIGHT

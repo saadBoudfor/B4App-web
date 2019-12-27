@@ -3,6 +3,15 @@
 html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  //background-color: #303030;
+  font-family: "Open Sans", Roboto, "Helvetica Neue", sans-serif;
+  color: #303030;
+}
+
+div {
+  font-family: "Open Sans", Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
+.title {
+  font-family: "Proza Libre", "Open Sans",  Roboto, "Helvetica Neue", sans-serif;
 }

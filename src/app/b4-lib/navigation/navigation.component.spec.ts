@@ -5,6 +5,9 @@ import {By} from '@angular/platform-browser';
 import {NGXLogger} from 'ngx-logger';
 import {NavigationModel} from './NavigationModel';
 import {ButtonPosition} from './ButtonPosition';
+import {TranslateService} from '@ngx-translate/core';
+import {BehaviorSubject} from 'rxjs';
+import {TranslatePipeMock} from '../../common/utils/testUtils/mocks/TranslatePipeMock';
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -15,10 +18,15 @@ describe('NavigationComponent', () => {
     {icon: 'add', name: 'save', position: ButtonPosition.LEFT}
   ]);
   beforeEach(async(() => {
+    const translateServiceSpy = jasmine.createSpyObj(['get', 'use']);
+    translateServiceSpy.get.and.returnValue(new BehaviorSubject<any>('mock'));
     ngxMock = jasmine.createSpyObj(['error']);
     TestBed.configureTestingModule({
-      declarations: [NavigationComponent],
-      providers: [{provide: NGXLogger, useValue: ngxMock}]
+      declarations: [NavigationComponent, TranslatePipeMock],
+      providers: [
+        {provide: NGXLogger, useValue: ngxMock},
+        {provide: TranslateService, useClass: translateServiceSpy}
+      ]
     })
       .compileComponents();
   }));

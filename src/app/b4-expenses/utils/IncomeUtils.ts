@@ -11,6 +11,7 @@ export class IncomeUtils {
   public static stringToIncomes(incomeStr: string): Income[] {
     return JSON.parse(incomeStr);
   }
+
   public static createId(income: Income, incomes: Income[]) {
     const last = _.last(incomes);
     income.id = last ? last.id + 1 : 1;
@@ -22,5 +23,12 @@ export class IncomeUtils {
 
   static setCardPayment(): Payment {
     return {type: PaymentType.CARD};
+  }
+
+  static formatDate(date: Date): string {
+    if (!date) {
+      return null;
+    }
+    return date.toLocaleDateString('fr-FR', {year: 'numeric', month: 'short', day: '2-digit'});
   }
 }

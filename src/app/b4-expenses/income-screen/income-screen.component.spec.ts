@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {IncomeScreenComponent} from './income-screen.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NO_ERRORS_SCHEMA, Pipe, PipeTransform} from '@angular/core';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {IncomeService} from '../services/IncomeService';
 import {MaterialModule} from '../MaterialModule';
@@ -12,17 +12,9 @@ import {CommonModule} from '@angular/common';
 import {Income} from '../models/Income';
 import {IncomeBuilder} from '../builders/IncomeBuilder';
 import {Currency} from '../models/Currency';
+import {TranslatePipeMock} from '../../common/utils/testUtils/mocks/TranslatePipeMock';
 
-@Pipe({name: 'translate'})
-class MockPipe implements PipeTransform {
-  transform(value: any): any {
-    return value;
-  }
 
-  get(value: any): any {
-    return new BehaviorSubject<any>('mock-' + value);
-  }
-}
 
 class IncomeServiceMock {
   save(income: Income) {
@@ -45,7 +37,7 @@ describe('IncomeScreenComponent', () => {
         BrowserAnimationsModule,
         CommonModule
       ],
-      declarations: [IncomeScreenComponent, MockPipe],
+      declarations: [IncomeScreenComponent, TranslatePipeMock],
       providers: [
         {provide: IncomeService, useClass: IncomeServiceMock},
         {provide: TranslateService, useClass: translateServiceSpy}

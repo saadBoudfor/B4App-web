@@ -1,0 +1,36 @@
+@import "src/styles/theme";
+
+main.income.details {
+  display: flex;
+  flex-flow: column;
+  padding-bottom: 15px;
+
+  div.income.field {
+    &:first-child {
+      margin-top: 15px;
+      border-top: none;
+    }
+    display: flex;
+    flex-flow: row;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+
+    div.key {
+      flex: 1;
+      font-weight: bold;
+      color: $primary;
+    }
+
+    div.value {
+      flex: 2;
+      text-align: end;
+      em.payment.type {
+        font-size: 32px;
+        color: grey;
+      }
+      span.currency {
+        color: $primary;
+      }
+    }
+  }
+}

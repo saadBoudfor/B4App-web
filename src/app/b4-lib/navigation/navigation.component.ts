@@ -4,6 +4,7 @@ import {ButtonPosition} from './ButtonPosition';
 import {NGXLogger} from 'ngx-logger';
 import {NavigationButton} from './NavigationButton';
 import * as _ from 'lodash';
+import {ErrorCode} from '../../b4-expenses/constants/ErrorCode';
 
 @Component({
   selector: 'nav-component',
@@ -27,7 +28,7 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     if (!this.navigationModel || !this.navigationModel.hasContent()) {
-      this.logger.error('Navigation component was called with empty model');
+      this.logger.error(ErrorCode.NAVIGATION_MODEL_EMPTY);
     } else {
       this.leftButton = this.getLeftButton();
       this.rightButton = this.getRightButton();

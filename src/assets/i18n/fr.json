@@ -9,8 +9,25 @@
         "isProgrammed": "Virement mensuel ?",
         "endDate": "Date de fin",
         "submit": "valider",
-        "isCardPayment": "Payment par carte ?"
+        "isCardPayment": "Payment par carte ?",
+        "title": "Source de revenue",
+        "subtitle": "Salaire, ventes, primes, ..."
       }
+    },
+    "details": {
+      "origin": "Provenance",
+      "description": "Description",
+      "amount": "Montant",
+      "transferDate": "Date du virement",
+      "isProgrammed": "Virement mensuel ?",
+      "endDate": "Fin du mandat",
+      "paymentType": "Type de payement",
+      "title": "Source de revenue",
+      "subtitle": "Détails du virement"
     }
+  },
+  "global": {
+    "true": "oui",
+    "eur": "euro"
   }
 }

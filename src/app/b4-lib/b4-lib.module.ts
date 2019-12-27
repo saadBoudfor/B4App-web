@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
 import {HttpClientModule} from '@angular/common/http';
 import {NavigationComponent} from './navigation/navigation.component';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {NavigationComponent} from './navigation/navigation.component';
   imports: [
     CommonModule,
     HttpClientModule,
-    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR})
+    LoggerModule.forRoot({level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR}),
+    TranslateModule
   ],
   exports: [NavigationComponent]
 })
