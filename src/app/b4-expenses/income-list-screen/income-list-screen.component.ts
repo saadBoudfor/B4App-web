@@ -15,6 +15,7 @@ export class IncomeListScreenComponent implements OnInit {
   @Input()
   public incomeList: Income[];
   public navigationModel: NavigationModel;
+  public utils = IncomeUtils;
 
   /**
    * Income details card:
@@ -30,9 +31,5 @@ export class IncomeListScreenComponent implements OnInit {
       {name: 'back', icon: 'arrow_back_ios', position: ButtonPosition.LEFT},
     ];
     this.navigationModel = new NavigationModel('income.list.title', '', '', navigationButton);
-  }
-
-  formatDate(date: Date): string {
-    return IncomeUtils.formatDate(date);
   }
 }

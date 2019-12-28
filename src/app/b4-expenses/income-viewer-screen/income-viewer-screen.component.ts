@@ -17,6 +17,8 @@ export class IncomeViewerScreenComponent implements OnInit {
 
   public navigationModel: NavigationModel;
 
+  public utils = IncomeUtils;
+
   constructor() {
   }
 
@@ -32,9 +34,5 @@ export class IncomeViewerScreenComponent implements OnInit {
       {name: 'back', icon: 'arrow_back_ios', position: ButtonPosition.LEFT},
     ];
     this.navigationModel = new NavigationModel('income.details.title', 'income.details.subtitle', 'swap_horiz', navigationButton);
-  }
-
-  formatDate(date: Date): string {
-    return IncomeUtils.formatDate(date);
   }
 }
