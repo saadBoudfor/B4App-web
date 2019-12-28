@@ -25,7 +25,7 @@
       "title": "Source de revenue",
       "subtitle": "Détails du virement"
     },
-    "list": {"title":  "Liste des virements"}
+    "list": {"title":  "Liste des virements", "empty":  "Aucune source de revenue enregistrée pour l'instant"}
   },
   "global": {
     "true": "oui",

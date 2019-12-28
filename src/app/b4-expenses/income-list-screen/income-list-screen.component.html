@@ -1,5 +1,8 @@
 <nav-component [navigationModel]="navigationModel"></nav-component>
 <main class="income list">
+  <div *ngIf="!incomeList">
+      <p>{{'income.list.empty' | translate}}</p>
+  </div>
   <mat-card *ngFor="let income of incomeList; let $index = index" class="card" [ngClass]="'background-' + $index">
     <div class="income id">
       <em class="title">{{income.origin}}</em>
