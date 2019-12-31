@@ -3,8 +3,7 @@ import {ExpensesRouterService} from './expenses-router.service';
 
 @Component({
   selector: 'expenses-routing',
-  templateUrl: './expenses-routing.component.html',
-  styleUrls: ['./expenses-routing.component.scss']
+  templateUrl: './expenses-routing.component.html'
 })
 export class ExpensesRoutingComponent implements OnInit {
 

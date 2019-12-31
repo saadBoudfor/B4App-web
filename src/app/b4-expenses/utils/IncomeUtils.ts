@@ -51,8 +51,7 @@ export class IncomeUtils {
     }
     const obj = JSON.parse(str);
     if (Array.isArray(obj)) {
-      obj.map(income => this.parseIncome(income));
-      return obj;
+      return obj.map(income => this.parseIncome(income));
     } else {
       return this.parseIncome(obj);
     }
