@@ -13,7 +13,7 @@ export class IncomeService implements CrudService<Income, number> {
   }
 
   delete(id: number): Income[] {
-    this.log.info(' Income repository [IncomeService] delete income from list, id=' + id);
+    this.log.debug(' Income service [IncomeService] delete income from list, id=' + id);
     return this.incomePersistence.delete(id);
   }
 
@@ -29,8 +29,11 @@ export class IncomeService implements CrudService<Income, number> {
     if (!income.payment) {
       income.payment = {type: PaymentType.CASH};
     }
+    if (income.id) {
+      return this.update(income);
+    }
     IncomeUtils.createId(income, this.getAll());
-    this.log.info(' Income repository [IncomeService] try to add new income with id=' + income.id);
+    this.log.debug(' Income service [IncomeService] try to add new income with id=' + income.id);
     return this.incomePersistence.save(income);
   }
 

@@ -5,6 +5,7 @@ import {BehaviorSubject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {TranslatePipeMock} from '../../common/utils/testUtils/mocks/TranslatePipeMock';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {ExpensesRouterService} from '../expenses-routing/expenses-router.service';
 
 describe('IncomeViewerScreenComponent', () => {
   let component: IncomeViewerScreenComponent;
@@ -13,10 +14,13 @@ describe('IncomeViewerScreenComponent', () => {
   beforeEach(async(() => {
     const translateServiceSpy = jasmine.createSpyObj(['get', 'use']);
     translateServiceSpy.get.and.returnValue(new BehaviorSubject<any>('mock'));
+    const routerServiceSpy = jasmine.createSpyObj(['goTo']);
+    routerServiceSpy.goTo.and.callFake(console.log);
     TestBed.configureTestingModule({
       declarations: [ IncomeViewerScreenComponent, TranslatePipeMock ],
       providers: [
-        {provide: TranslateService, useClass: translateServiceSpy}
+        {provide: TranslateService, useClass: translateServiceSpy},
+        {provide: ExpensesRouterService, useValue: routerServiceSpy}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })

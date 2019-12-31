@@ -3,9 +3,7 @@ import {Amount} from '../models/Amount';
 import {Payment} from '../models/Payment';
 
 export class IncomeBuilder {
-  public static builder = new IncomeBuilder();
-
-  private income: Income = new Income();
+  private income: Income = {};
 
   id(id: number): IncomeBuilder {
     this.income.id = id;

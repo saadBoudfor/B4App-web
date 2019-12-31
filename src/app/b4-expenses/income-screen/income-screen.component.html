@@ -1,5 +1,5 @@
 <header>
-  <nav-component [navigationModel]="navigationModel"></nav-component>
+  <nav-component [navigationModel]="navigationModel" (action)="goTo($event)"></nav-component>
 </header>
 
 <form [formGroup]="incomeForm" (ngSubmit)="submitIncomeForm()">
@@ -48,7 +48,7 @@
 
   <section class="button row">
     <button mat-raised-button [disabled]="incomeForm.invalid" [color]="'primary'">
-      {{('income.form.add.submit' | translate).toUpperCase()}}
+      {{('income.form.add.' + (incomeToUpdate ? 'update': 'submit') | translate).toUpperCase()}}
     </button>
   </section>
 </form>

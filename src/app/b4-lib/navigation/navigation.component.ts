@@ -17,7 +17,7 @@ export class NavigationComponent implements OnInit {
   public rightButton: NavigationButton;
 
   @Output()
-  public action = new EventEmitter<ButtonPosition>();
+  public action = new EventEmitter<string>();
 
   @Input()
   public navigationModel: NavigationModel;
@@ -53,7 +53,7 @@ export class NavigationComponent implements OnInit {
   }
 
   onClick(button: string) {
-    this.action.emit(ButtonPosition[button]);
+    this.action.emit(button);
   }
 
 }

@@ -1,9 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Income} from '../models/Income';
 import {IncomeUtils} from '../utils/IncomeUtils';
 import {NavigationModel} from '../../b4-lib/navigation/NavigationModel';
 import {NavigationButton} from '../../b4-lib/navigation/NavigationButton';
 import {ButtonPosition} from '../../b4-lib/navigation/ButtonPosition';
+import {IncomeService} from '../services/IncomeService';
+import {ExpensesRouterService} from '../expenses-routing/expenses-router.service';
 
 @Component({
   selector: 'income-list-screen',
@@ -12,7 +14,6 @@ import {ButtonPosition} from '../../b4-lib/navigation/ButtonPosition';
 })
 export class IncomeListScreenComponent implements OnInit {
 
-  @Input()
   public incomeList: Income[];
   public navigationModel: NavigationModel;
   public utils = IncomeUtils;
@@ -22,7 +23,7 @@ export class IncomeListScreenComponent implements OnInit {
    *  - Origin            - Amount
    *  - transferDate      - Payment type.
    */
-  constructor() {
+  constructor(private incomeService: IncomeService, private expenseRouter: ExpensesRouterService) {
   }
 
   ngOnInit() {
@@ -31,5 +32,16 @@ export class IncomeListScreenComponent implements OnInit {
       {name: 'back', icon: 'arrow_back_ios', position: ButtonPosition.LEFT},
     ];
     this.navigationModel = new NavigationModel('income.list.title', '', '', navigationButton);
+    this.incomeList = this.incomeService.getAll();
+  }
+
+  onNavigationClick($event: string) {
+    if ($event === 'add') {
+      this.expenseRouter.goTo('add-income');
+    }
+  }
+
+  onCardClick(income: Income) {
+    this.expenseRouter.goTo('show-income', {key: 'income', value: income});
   }
 }

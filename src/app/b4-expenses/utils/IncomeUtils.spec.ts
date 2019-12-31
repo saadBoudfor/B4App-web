@@ -1,5 +1,7 @@
 import {IncomeUtils} from './IncomeUtils';
 import {PaymentType} from '../models/PaymentType';
+import {Income} from '../models/Income';
+import {IncomeData} from '../../common/utils/testUtils/data/IncomeData';
 
 describe('Income utils', () => {
   it('Should return card payment', () => {
@@ -10,5 +12,31 @@ describe('Income utils', () => {
   });
   it('Should format date to dd/mm/yyyy', () => {
     expect(IncomeUtils.formatDate(new Date(1991, 11, 12))).toEqual('12 déc. 1991');
+  });
+
+  it('should convert income to string successfully', () => {
+    const income: Income = IncomeData.validIncome();
+    expect(IncomeUtils.toString(income)).not.toBeNull();
+    expect(IncomeUtils.toString(income).length).not.toEqual(0);
+  });
+
+  it('should convert string to income success', () => {
+    const income: Income = IncomeData.validIncome();
+    const str = IncomeUtils.toString(income);
+    expect(IncomeUtils.valueOf(str)).toEqual(income);
+  });
+
+  it('should convert string to income success', () => {
+    const income: Income = IncomeData.validIncome();
+    const str = IncomeUtils.toString([income, income, income]);
+    expect(IncomeUtils.valueOf(str)).toEqual([income, income, income]);
+  });
+  it('should return true if income is valid, when he has at least origin, transfer date and amount', () => {
+      const income = IncomeData.validIncome();
+      expect(IncomeUtils.isValid(income)).toBeTruthy();
+  });
+  it('should return false if income is invalid, when origin, transfer date or amount are missing', () => {
+    const income = IncomeData.invalidIncome();
+    expect(IncomeUtils.isValid(income)).toBeFalsy();
   });
 });

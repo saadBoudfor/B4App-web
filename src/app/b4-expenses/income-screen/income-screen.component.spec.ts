@@ -10,15 +10,14 @@ import {BehaviorSubject} from 'rxjs';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CommonModule} from '@angular/common';
 import {Income} from '../models/Income';
-import {IncomeBuilder} from '../builders/IncomeBuilder';
-import {Currency} from '../models/Currency';
 import {TranslatePipeMock} from '../../common/utils/testUtils/mocks/TranslatePipeMock';
-
+import {ExpensesRouterService} from '../expenses-routing/expenses-router.service';
+import {ObjectUtils} from '../utils/ObjectUtils';
 
 
 class IncomeServiceMock {
   save(income: Income) {
-    console.log(income);
+    console.log('save income: ' + ObjectUtils.toString(income));
   }
 }
 
@@ -29,6 +28,8 @@ describe('IncomeScreenComponent', () => {
   beforeEach(async(() => {
     const translateServiceSpy = jasmine.createSpyObj(['get', 'use']);
     translateServiceSpy.get.and.returnValue(new BehaviorSubject<any>('mock'));
+    const routerServiceSpy = jasmine.createSpyObj(['goTo']);
+    routerServiceSpy.goTo.and.callFake(console.log);
     TestBed.configureTestingModule({
       imports: [ReactiveFormsModule,
         FormsModule,
@@ -40,7 +41,8 @@ describe('IncomeScreenComponent', () => {
       declarations: [IncomeScreenComponent, TranslatePipeMock],
       providers: [
         {provide: IncomeService, useClass: IncomeServiceMock},
-        {provide: TranslateService, useClass: translateServiceSpy}
+        {provide: TranslateService, useValue: translateServiceSpy},
+        {provide: ExpensesRouterService, useValue: routerServiceSpy}
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -73,22 +75,5 @@ describe('IncomeScreenComponent', () => {
     const transferDateInput = component.incomeForm.controls.transferDate;
     expect(transferDateInput.valid).toBeFalsy();
     expect(transferDateInput.errors.required).toBeTruthy();
-  });
-
-  it('submitting a form adding new income', () => {
-    const expectedIncome: Income = IncomeBuilder
-      .builder
-      .origin('transfer test')
-      .transferDate(new Date())
-      .amount({value: 111, currency: Currency.EUR})
-      .build();
-    const originInput = component.incomeForm.controls.origin;
-    const amountInput = component.incomeForm.controls.amount;
-    const transferDateInput = component.incomeForm.controls.transferDate;
-    originInput.setValue(expectedIncome.origin);
-    amountInput.setValue(expectedIncome.amount.value);
-    transferDateInput.setValue(expectedIncome.transferDate);
-    expect(component.incomeForm.valid).toBeTruthy();
-    expect(component.submitIncomeForm()).toEqual(expectedIncome);
   });
 });

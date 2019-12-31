@@ -8,7 +8,8 @@
         "transferDate": "Date du virement",
         "isProgrammed": "Virement mensuel ?",
         "endDate": "Date de fin",
-        "submit": "valider",
+        "submit": "Valider",
+        "update": "Modifier",
         "isCardPayment": "Payment par carte ?",
         "title": "Source de revenue",
         "subtitle": "Salaire, ventes, primes, ..."

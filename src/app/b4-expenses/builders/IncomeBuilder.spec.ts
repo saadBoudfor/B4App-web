@@ -7,8 +7,7 @@ describe('Income builder', () => {
   it('should return the correct income', () => {
     const transferDateT = new Date();
     const endDateT = new Date();
-    const incomeByBuilder: Income = IncomeBuilder
-      .builder
+    const incomeByBuilder: Income = new IncomeBuilder()
       .id(1)
       .origin('origin')
       .description('description')
