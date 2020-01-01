@@ -55,8 +55,21 @@ export class IncomeRepository implements CrudService<Income, number> {
     return income;
   }
 
-  update(data: Income): Income {
-    return undefined;
+  update(income: Income): Income {
+    if (!income.id) {
+      throw ErrorUtils.getException(ErrorCode.ID_NOT_FOUND, 'update', IncomeRepository.name, IncomeUtils.toString(income.id));
+    }
+    if (!IncomeUtils.isValid(income)) {
+      throw ErrorUtils.getException(ErrorCode.INVALID_INCOME, 'update', IncomeRepository.name, IncomeUtils.toString(income));
+    }
+    if (this.getByID(income.id)) {
+      const newList = _.reject(this.getAll(), elt => elt.id === income.id);
+      newList.push(income);
+      localStorage.setItem(LocalStorageKeys.INCOMES, IncomeUtils.toString(newList));
+    } else {
+      throw ErrorUtils.getException(ErrorCode.INCOME_NOT_FOUND, 'update', IncomeRepository.name, IncomeUtils.toString(income.id));
+    }
+    return income;
   }
 
 }

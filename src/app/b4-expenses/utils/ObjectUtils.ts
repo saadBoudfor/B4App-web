@@ -4,6 +4,6 @@ export class ObjectUtils {
   }
 
   public static isEmpty(obj: any) {
-    return obj === null || obj === undefined;
+    return obj === null || obj === undefined || obj === [];
   }
 }

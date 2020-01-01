@@ -1,13 +1,19 @@
 import {Income} from '../models/Income';
-import * as _ from 'lodash';
 import {PaymentType} from '../models/PaymentType';
 import {Payment} from '../models/Payment';
 import {ObjectUtils} from './ObjectUtils';
+import * as _ from 'lodash';
 
 export class IncomeUtils {
-  public static createId(income: Income, incomes: Income[]) {
-    const last = _.last(incomes);
-    income.id = last ? last.id + 1 : 1;
+
+  public static createId(incomes: Income[]): number {
+    let id = 1;
+    if (!ObjectUtils.isEmpty(incomes)) {
+      while (_.find(incomes, income => income.id === id)) {
+        id++;
+      }
+    }
+    return id;
   }
 
   public static isValid(income: Income): boolean {

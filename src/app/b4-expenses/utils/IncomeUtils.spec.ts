@@ -32,11 +32,26 @@ describe('Income utils', () => {
     expect(IncomeUtils.valueOf(str)).toEqual([income, income, income]);
   });
   it('should return true if income is valid, when he has at least origin, transfer date and amount', () => {
-      const income = IncomeData.validIncome();
-      expect(IncomeUtils.isValid(income)).toBeTruthy();
+    const income = IncomeData.validIncome();
+    expect(IncomeUtils.isValid(income)).toBeTruthy();
   });
   it('should return false if income is invalid, when origin, transfer date or amount are missing', () => {
     const income = IncomeData.invalidIncome();
     expect(IncomeUtils.isValid(income)).toBeFalsy();
+  });
+
+  /**
+   * Testing IncomeUtils#createID:
+   * - should return 1 for the first income.
+   * - should provide new id, if incomes are already saved.
+   */
+  it('should return 1 for the first income', () => {
+    const incomes = [];
+    expect(IncomeUtils.createId(incomes)).toEqual(1);
+  });
+
+  it('should provide new id, if incomes are already saved', () => {
+    const incomes = IncomeData.validIncomeArray(8);
+    expect(IncomeUtils.createId(incomes)).toEqual(8);
   });
 });

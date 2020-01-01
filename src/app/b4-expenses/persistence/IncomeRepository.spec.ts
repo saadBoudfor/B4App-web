@@ -144,4 +144,58 @@ describe('IncomeRepository: testing income persistence functions', () => {
     expect(() => incomeRepository.delete(null))
       .toThrow(ErrorUtils.getException(ErrorCode.ID_NOT_FOUND, 'delete', IncomeRepository.name));
   });
+
+  /**
+   * V. testing IncomeRepository#update.
+   *  - update existing income successfully.
+   *  - throw error for invalid incomes and those without id.
+   *  - throw error if id not found.
+   *  - insure that others incomes are not altered.
+   */
+
+  it('should throw error if id not found', () => {
+    // given:
+    const income = IncomeData.validIncome();
+    income.id = 999;
+    // when-then:
+    expect(() => incomeRepository.update(income))
+      .toThrow(ErrorUtils.getException(ErrorCode.INCOME_NOT_FOUND, 'update', IncomeRepository.name, IncomeUtils.toString(income.id)));
+  });
+
+  it('should throw error if id null', () => {
+    // given-when-then:
+    expect(() => incomeRepository.update({id: null}))
+      .toThrow(ErrorUtils.getException(ErrorCode.ID_NOT_FOUND, 'update', IncomeRepository.name, IncomeUtils.toString(null)));
+  });
+
+  it('should throw error if income is invalid', () => {
+    const income = IncomeData.invalidIncome();
+    // given-when-then:
+    expect(() => incomeRepository.update(income))
+      .toThrow(ErrorUtils.getException(ErrorCode.INVALID_INCOME, 'update', IncomeRepository.name, IncomeUtils.toString(income)));
+  });
+
+  it('should update income success', () => {
+    // Given:
+    const income = IncomeData.validIncome();
+    incomeRepository.save(income);
+    // When:
+    income.amount.value += 999;
+    incomeRepository.update(income);
+    // Then:
+    expect(incomeRepository.getByID(income.id)).toEqual(income);
+  });
+
+  it('should update income success', () => {
+    // Given:
+    const incomes = IncomeData.validIncomeArray(8);
+    incomes.forEach(income => incomeRepository.save(income));
+    // When:
+    const incomeToUpdate = incomes[5];
+    incomeToUpdate.amount.value += 999;
+    incomeRepository.update(incomeToUpdate);
+    // Then:
+    expect(incomeRepository.getByID(incomeToUpdate.id)).toEqual(incomeToUpdate);
+    expect(incomeRepository.getAll().sort((a, b) => a.id - b.id)).toEqual(incomes.sort((a, b) => a.id - b.id));
+  });
 });
